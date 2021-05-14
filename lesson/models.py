@@ -26,5 +26,5 @@ class Material(models.Model):
                                      choices=MATERIAL_TYPE,
                                      default='theory')
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title

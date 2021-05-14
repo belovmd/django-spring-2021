@@ -4,6 +4,7 @@ from . import models
 
 # admin.site.register(models.Material)
 
+
 @admin.register(models.Material)
 class MaterialAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'material_type', 'publish')
