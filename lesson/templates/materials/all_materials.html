@@ -1,4 +1,4 @@
-{% extends "materials/../base.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     All materials
@@ -15,5 +15,6 @@
         <p>
             {{ material.body|truncatewords_html:5|linebreaks }}
         </p>
+        <a href="{{ material.get_absolute_url }}">link</a>
     {% endfor %}
 {% endblock %}
