@@ -17,4 +17,7 @@
         </p>
         <a href="{{ material.get_absolute_url }}">link</a>
     {% endfor %}
+    <p>
+        <a href="{% url "lesson:create_material" %}">Brave New World</a>
+    </p>
 {% endblock %}

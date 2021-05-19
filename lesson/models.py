@@ -28,6 +28,7 @@ class Material(models.Model):
                                      choices=MATERIAL_TYPE,
                                      default='theory')
 
+    new_field = models.CharField(default='asdfasdf')
     # def __str__(self):
     #     return self.title
 
