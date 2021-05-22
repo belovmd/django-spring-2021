@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:material_id>/share/', views.share_material,
          name='share_material'),
     path('create/', views.create_material, name='create_material'),
+    path('login/', views.user_login, name='user_login'),
 ]
