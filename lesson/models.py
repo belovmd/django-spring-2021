@@ -38,3 +38,12 @@ class Material(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
+
+
+class Comment(models.Model):
+    material = models.ForeignKey(Material,
+                                 on_delete=models.CASCADE,
+                                 related_name='comment')
+    name = models.CharField(max_length=100)
+    body = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

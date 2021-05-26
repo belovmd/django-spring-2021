@@ -18,3 +18,9 @@ class MaterialForm(forms.ModelForm):
 class LoginForm(forms.Form):
     login = forms.CharField(max_length=25)
     password = forms.CharField(max_length=25, widget=forms.PasswordInput)
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = models.Comment
+        fields = ('name', 'body')
