@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
@@ -12,11 +13,18 @@ from django.http import HttpResponse
 from . import forms
 from . import models
 
+from django.views.generic import ListView
 
 BODY_TEMPLATE = (
     '{title} at {uri} was recommended to you by {name}.\n\n'
     'Comment: {comment}'
 )
+
+
+class MaterialListView(ListView, LoginRequiredMixin):
+    queryset = models.Material.objects.all()
+    context_object_name = 'materials'
+    template_name = 'materials/all_materials.html'
 
 
 def all_materials(request):
@@ -126,3 +134,8 @@ def user_login(request):
     else:
         form = forms.LoginForm()
         return render(request, 'login.html', {'form': form})
+
+
+def view_profile(request):
+    return render(request,
+                  'profile.html')

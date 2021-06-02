@@ -121,5 +121,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-LOGIN_URL = '/lesson/login/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/lesson/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
