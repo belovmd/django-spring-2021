@@ -142,7 +142,6 @@ def view_profile(request):
 
 
 def register(request):
-    print(233)
     if request.method == "POST":
         user_form = forms.RegistrationForm(request.POST)
         if user_form.is_valid():
@@ -158,3 +157,31 @@ def register(request):
         user_form = forms.RegistrationForm()
         return render(request, 'registration/register_user.html',
                       {'form': user_form})
+
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+
+        user_form = forms.UserEditForm(request.POST,
+                                       instance=request.user)
+        profile_form = forms.ProfileEditForm(request.POST,
+                                             instance=request.user.profile,
+                                             files=request.FILES)
+
+        if profile_form.is_valid():
+            if user_form.is_valid():
+
+                if not profile_form.cleaned_data['photo']:
+                    profile_form.cleaned_data['photo'] = request.user.profile.photo
+                profile_form.save()
+                user_form.save()
+                return render(request, 'profile.html')
+
+    else:
+        user_form = forms.UserEditForm(request.POST,
+                                       instance=request.user)
+        profile_form = forms.ProfileEditForm(request.POST,
+                                             instance=request.user.profile)
+        return render(request,
+                      'edit_profile.html',
+                      {'user_form': user_form, 'profile_form': profile_form})
