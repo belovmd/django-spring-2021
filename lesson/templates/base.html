@@ -15,6 +15,7 @@
     <a href="{% url "lesson:profile" %}"> Profile</a>
 {% else %}
         <a href="{% url "lesson:login" %}"> Login</a>
+        <a href="{% url "lesson:register" %}">Register</a>
 {% endif %}
 {% block content %}
 {% endblock %}
