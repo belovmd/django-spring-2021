@@ -15,13 +15,20 @@ class MyHack(auth_views.PasswordResetView):
 
 urlpatterns = [
     # path('', views.all_materials, name='all_materials'),
-    path('', views.MaterialListView.as_view(), name='all_materials'),
-    path('<int:y>/<int:m>/<int:d>/<slug:slug>/', views.material_details,
+    # Lessons
+    path('', views.all_lessons, name='all_lessons'),
+    path('<slug:slug>/', views.lesson_details, name='lesson_details'),
+
+    # Materials
+    path('material/', views.MaterialListView.as_view(), name='all_materials'),
+    path('material/<int:y>/<int:m>/<int:d>/<slug:slug>/', views.material_details,
          name='material_details'),
-    path('<int:material_id>/share/', views.share_material,
+    path('material/<int:material_id>/share/', views.share_material,
          name='share_material'),
     path('create/', views.create_material, name='create_material'),
     # path('login/', views.user_login, name='user_login'),
+
+    #Auth
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 

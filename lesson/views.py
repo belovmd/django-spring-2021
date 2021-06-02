@@ -158,6 +158,7 @@ def register(request):
         return render(request, 'registration/register_user.html',
                       {'form': user_form})
 
+
 @login_required
 def edit_profile(request):
     if request.method == "POST":
@@ -185,3 +186,19 @@ def edit_profile(request):
         return render(request,
                       'edit_profile.html',
                       {'user_form': user_form, 'profile_form': profile_form})
+
+
+def all_lessons(request):
+    lesson_list = models.Lesson.objects.all()
+    return render(request,
+                  'lessons/all_lessons.html',
+                  {'lessons': lesson_list})
+
+
+@login_required
+def lesson_details(request, slug):
+    lesson = get_object_or_404(models.Lesson,
+                               slug=slug)
+    return render(request,
+                  'lessons/detail.html',
+                  {'lesson': lesson})

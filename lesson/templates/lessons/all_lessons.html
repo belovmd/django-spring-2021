@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    All lessons
+{% endblock %}
+
+{% block content %}
+    <h1>My lesson list</h1>
+
+    {% for lesson in lessons %}
+        <h2>{{ lesson.title }}</h2>
+        <p>
+            {{ lesson.note|truncatewords_html:5|linebreaks }}
+        </p>
+        <a href="{{ lesson.get_absolute_url }}">link</a>
+    {% endfor %}
+
+{% endblock %}

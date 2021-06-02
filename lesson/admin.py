@@ -5,6 +5,7 @@ from . import models
 # admin.site.register(models.Material)
 admin.site.register(models.Comment)
 admin.site.register(models.Profile)
+admin.site.register(models.Lesson)
 
 
 @admin.register(models.Material)

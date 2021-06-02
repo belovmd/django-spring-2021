@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ lesson.title|truncatewords:3 }}
+{% endblock %}
+
+{% block content %}
+    <a href="{% url "lesson:all_lessons" %}">All lessons</a>
+    <h1>{{ lesson.title}}</h1>
+    <p>
+        {{ lesson.note|linebreaks }}
+    </p>
+    <h2>Materials for this lesson:</h2>
+    {% for material in lesson.materials.all %}
+        <h3><a href="{{ material.get_absolute_url }}">{{ material.title }}</a></h3>
+
+        <p>
+            Material author: {{ material.author }}. Published {{ material.publish }}
+        </p>
+        <p>
+            {{ material.body|truncatewords_html:5|linebreaks }}
+        </p>
+
+    {% endfor %}
+{% endblock %}

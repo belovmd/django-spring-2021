@@ -55,3 +55,22 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     birthday = models.DateTimeField(null=True, blank=True)
     photo = models.ImageField(upload_to="user/%Y/%m/%d/", blank=True)
+
+
+class Lesson(models.Model):
+
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
+    note = models.TextField()
+
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    materials = models.ManyToManyField(Material, related_name='lessons')
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('lesson:lesson_details',
+                       args=[self.slug, ])
