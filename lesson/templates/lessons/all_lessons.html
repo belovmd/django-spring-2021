@@ -16,3 +16,10 @@
     {% endfor %}
 
 {% endblock %}
+
+
+{% block menu %}
+    {% for lesson in lessons %}
+        <a class="nav-link active" href="{{ lesson.get_absolute_url }}">{{ lesson.title }}</a>
+    {% endfor %}
+{% endblock %}

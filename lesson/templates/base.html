@@ -1,4 +1,8 @@
+{% load bootstrap4 %}
 {% load static %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +13,42 @@
 </head>
 
 <body>
-{% if request.user.is_authenticated %}
-    Hi {{ request.user.first_name }}
-    <a href="{% url "lesson:logout" %}"> Logout</a>
-    <a href="{% url "lesson:profile" %}"> Profile</a>
-{% else %}
+<header>
+    {% if request.user.is_authenticated %}
+        Hi {{ request.user.first_name }}
+        <a href="{% url "lesson:logout" %}"> Logout</a>
+        <a href="{% url "lesson:profile" %}"> Profile</a>
+    {% else %}
         <a href="{% url "lesson:login" %}"> Login</a>
         <a href="{% url "lesson:register" %}">Register</a>
-{% endif %}
-{% block content %}
-{% endblock %}
+    {% endif %}
+</header>
+
+
+<div class="container-flex m-4">
+    <div class="row">
+        <div class="col-sm-9 px-0 pr-1">
+            <div class="p-3 border border-primary rounded">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="col-sm-3 border border-primary rounded">
+            {% block menu %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <div class="row  border border-primary rounded">
+        <div class="col-sm-9">
+            Maxim Belov
+        </div>
+        <div class="col-sm-3">
+            Python Web Development
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
