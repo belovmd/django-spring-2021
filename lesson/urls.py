@@ -17,7 +17,7 @@ urlpatterns = [
     # path('', views.all_materials, name='all_materials'),
     # Lessons
     path('', views.all_lessons, name='all_lessons'),
-    path('<slug:slug>/', views.lesson_details, name='lesson_details'),
+    path('lesson/<slug:slug>/', views.lesson_details, name='lesson_details'),
 
     # Materials
     path('material/', views.MaterialListView.as_view(), name='all_materials'),
